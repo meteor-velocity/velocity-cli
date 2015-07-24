@@ -11,6 +11,8 @@ if (!hasArgument(meteorArguments, '--release')) {
   meteorArguments.push('--release', 'velocity:METEOR@1.1.0.2_3');
 }
 
+meteorArguments = replaceCommand(meteorArguments, 'test-package', 'test-packages');
+
 if (isCommand(meteorArguments, 'test-packages')) {
   if (!hasArgument(meteorArguments, '--driver-package')) {
     meteorArguments.push('--driver-package', 'velocity:html-reporter');
@@ -25,7 +27,7 @@ if (isCommand(meteorArguments, 'test-packages')) {
 } else {
   console.error('Velocity does not support this command.');
   console.log('Supported commands:');
-  console.log('  * velocity test-packages my-package');
+  console.log('  * velocity test-package my-package');
 }
 
 
@@ -37,6 +39,14 @@ function hasArgument(args, argument) {
   return _.some(args.slice(1), function (arg) {
     return _.startsWith(arg, argument);
   });
+}
+
+function replaceCommand(args, oldCommand, newCommand) {
+  if (args[0] === oldCommand) {
+    return [newCommand].concat(args.slice(1));
+  } else {
+    return args;
+  }
 }
 
 function replaceArgument(args, oldArgument, newArgument) {
