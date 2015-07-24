@@ -25,3 +25,7 @@ This command runs the tests only once and then exit with the status code.
 ```sh
 velocity test-package my-package --ci
 ```
+
+### More options
+
+The command supports a lot more options. You can find a list [here](https://github.com/meteor/meteor/blob/120febbf8a40f262e436d907ff36e469a19d7698/tools/commands.js#L1295-L1339).
