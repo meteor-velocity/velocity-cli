@@ -76,6 +76,10 @@ function spawnMeteor(options) {
   meteorProcess.stdout.pipe(process.stdout);
   meteorProcess.stderr.pipe(process.stderr);
 
+  meteorProcess.on('exit', function (code) {
+    process.exit(code);
+  })
+
   return meteorProcess;
 }
 
