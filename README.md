@@ -20,7 +20,7 @@ velocity test-package my-package
 
 ### Continuous Integration mode
 
-This command runs the tests only once and then exit with the status code.
+This command runs the tests only once and then exits with the status code.
 
 ```sh
 velocity test-package my-package --ci
