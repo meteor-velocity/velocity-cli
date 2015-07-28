@@ -1,5 +1,5 @@
 var _ = require('lodash');
-var run = require('lib/run');
+var run = require('./lib/run');
 
 run({
   args: process.argv.slice(2),
