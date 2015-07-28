@@ -16,7 +16,7 @@ describe('index', function () {
 
   describe('when no --release is specified', function () {
     it('adds the latest Velocity Meteor release as argument', function () {
-      var args = ['test-packages'];
+      var args = ['test-package'];
       var env = {};
 
       run({
@@ -33,7 +33,7 @@ describe('index', function () {
 
   describe('when no --driver-package is specified', function () {
     it('adds the velocity:html-reporter as driver-package', function () {
-      var args = ['test-packages'];
+      var args = ['test-package'];
       var env = {};
 
       run({
@@ -48,10 +48,10 @@ describe('index', function () {
     })
   })
 
-  describe('test-packages command', function () {
+  describe('test-package command', function () {
     describe('when --ci is passed as argument', function () {
       it('it calls meteor with --velocity (CI mode)', function () {
-        var args = ['test-packages', 'foo', '--ci'];
+        var args = ['test-package', 'foo', '--ci'];
         var env = {};
 
         run({
