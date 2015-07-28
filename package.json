@@ -1,6 +1,6 @@
 {
   "name": "velocity-cli",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "CLI tool for using Meteor Velocity to test your Meteor apps.",
   "main": "index.js",
   "bin": {
