@@ -35,7 +35,7 @@ describe('spawnMeteor', function () {
     });
 
     expect(childProcessStub.spawn).toHaveBeenCalledWith('meteor', args, {
-      cwd: process.cwd,
+      cwd: process.cwd(),
       env: env,
       stdio: 'pipe'
     });
