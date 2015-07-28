@@ -28,6 +28,11 @@ This command runs the tests only once and then exits with the status code.
 velocity test-app --ci
 ```
 
+### More options
+
+The command supports all options that `meteor run` supports. You can get a full list with `meteor help run`.
+
+
 ## Testing a package
 
 ### Watch mode
