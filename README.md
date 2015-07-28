@@ -8,6 +8,26 @@ CLI tool for using Meteor Velocity to test your Meteor apps.
 npm install velocity-cli -g
 ```
 
+## Testing an app
+
+### Watch mode
+
+This command runs the tests each time you change something.
+
+```sh
+velocity test-app
+```
+
+Note: This command also starts your app right now.
+
+### Continuous Integration mode
+
+This command runs the tests only once and then exits with the status code.
+
+```sh
+velocity test-app --ci
+```
+
 ## Testing a package
 
 ### Watch mode
