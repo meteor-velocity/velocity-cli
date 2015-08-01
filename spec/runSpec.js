@@ -31,6 +31,23 @@ describe('index', function () {
     })
   })
 
+  describe('when the environment VELOCITY_USE_CHECKED_OUT_METEOR variable is set to truthy value', function () {
+    it('does not add the latest Velocity Meteor release as argument', function () {
+      var args = ['test-package'];
+      var env = {VELOCITY_USE_CHECKED_OUT_METEOR: '1'};
+
+      run({
+        args: args,
+        env: env
+      });
+
+      expect(spawnTestPackagesMeteor).toHaveBeenCalled();
+      var spawnOptions = spawnTestPackagesMeteor.calls.argsFor(0)[0];
+      var expectedArguments = ['--release', 'velocity:METEOR@1.1.0.2_3'];
+      expect(_.intersection(spawnOptions.args.slice(1), expectedArguments)).toEqual([]);
+    })
+  })
+
   describe('when no --driver-package is specified', function () {
     it('adds the velocity:html-reporter as driver-package', function () {
       var args = ['test-package'];
