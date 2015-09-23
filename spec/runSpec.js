@@ -26,7 +26,7 @@ describe('index', function () {
 
       expect(spawnTestPackagesMeteor).toHaveBeenCalled();
       var spawnOptions = spawnTestPackagesMeteor.calls.argsFor(0)[0];
-      var expectedArguments = ['--release', 'velocity:METEOR@1.1.0.3_1'];
+      var expectedArguments = ['--release', 'velocity:METEOR@1.2.0.1_1'];
       expect(_.intersection(spawnOptions.args.slice(1), expectedArguments)).toEqual(expectedArguments);
     })
   })
