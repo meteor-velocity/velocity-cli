@@ -1,17 +1,18 @@
 describe('isWindows', function () {
-  var isWindows = require('../lib/isWindows');
+  var proxyquire = require('proxyquire');
+  var isWindows;
 
   beforeEach(function () {
-    this.originalPlatform = process.platform;
-  })
+    this.getPlatformSpy = jasmine.createSpy('getPlatform');
 
-  afterEach(function () {
-    process.platform = this.originalPlatform;
-  })
+    isWindows = proxyquire('../lib/isWindows', {
+      './getPlatform': this.getPlatformSpy
+    });
+  });
 
   describe('when the platform name starts with "win"', function () {
     beforeEach(function () {
-      process.platform = 'win32';
+      this.getPlatformSpy.and.returnValue('win32');
     })
 
     it('returns true', function () {
@@ -21,7 +22,7 @@ describe('isWindows', function () {
 
   describe('when the platform name does not start with "win"', function () {
     beforeEach(function () {
-      process.platform = 'linux';
+      this.getPlatformSpy.and.returnValue('linux');
     })
 
     it('returns false', function () {
