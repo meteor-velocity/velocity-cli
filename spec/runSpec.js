@@ -82,11 +82,41 @@ describe('index', function () {
         expect(_.contains(meteorArgs, '--velocity')).toBe(true);
         expect(_.contains(meteorArgs, '--ci')).toBe(false);
       })
+
+      it('sets the environment variable VELOCITY_CI=1', function () {
+        var args = ['test-package', 'foo', '--ci'];
+        var env = {};
+
+        run({
+          args: args,
+          env: env
+        });
+
+        expect(spawnTestPackagesMeteor).toHaveBeenCalled();
+        var spawnOptions = spawnTestPackagesMeteor.calls.argsFor(0)[0];
+        expect(spawnOptions.env.VELOCITY_CI).toBe('1');
+      })
+    })
+
+    describe('when --ci is not passed as argument', function () {
+      it('does not set the environment variable VELOCITY_CI=1', function () {
+        var args = ['test-package', 'foo'];
+        var env = {};
+
+        run({
+          args: args,
+          env: env
+        });
+
+        expect(spawnTestPackagesMeteor).toHaveBeenCalled();
+        var spawnOptions = spawnTestPackagesMeteor.calls.argsFor(0)[0];
+        expect(spawnOptions.env.VELOCITY_CI).toBeUndefined();
+      })
     })
   })
 
   describe('test-app command', function () {
-    it('it executes `meteor run --test`', function () {
+    it('executes `meteor run --test`', function () {
       var args = ['test-app'];
       var env = {};
 
@@ -104,7 +134,7 @@ describe('index', function () {
     })
 
     describe('when --ci is passed as argument', function () {
-      it('it executes `meteor run --test --ci`', function () {
+      it('executes `meteor run --test`', function () {
         var args = ['test-app', '--ci'];
         var env = {};
 
@@ -119,6 +149,36 @@ describe('index', function () {
         var meteorArgs = spawnOptions.args.slice(1);
         expect(command).toBe('run');
         expect(meteorArgs).toEqual(['--test']);
+      })
+
+      it('sets the environment variable VELOCITY_CI=1', function () {
+        var args = ['test-app', '--ci'];
+        var env = {};
+
+        run({
+          args: args,
+          env: env
+        });
+
+        expect(spawnMeteor).toHaveBeenCalled();
+        var spawnOptions = spawnMeteor.calls.argsFor(0)[0];
+        expect(spawnOptions.env.VELOCITY_CI).toBe('1');
+      })
+    })
+
+    describe('when --ci is not passed as argument', function () {
+      it('does not set the environment variable VELOCITY_CI=1', function () {
+        var args = ['test-app'];
+        var env = {};
+
+        run({
+          args: args,
+          env: env
+        });
+
+        expect(spawnMeteor).toHaveBeenCalled();
+        var spawnOptions = spawnMeteor.calls.argsFor(0)[0];
+        expect(spawnOptions.env.VELOCITY_CI).toBeUndefined();
       })
     })
   })
